@@ -2,9 +2,7 @@
 *.d
 
 # Object files
-*.o
 *.ko
-*.obj
 *.elf
 
 # Linker output
@@ -29,7 +27,6 @@
 *.dylib
 
 # Executables
-*.exe
 *.out
 *.app
 *.i*86
