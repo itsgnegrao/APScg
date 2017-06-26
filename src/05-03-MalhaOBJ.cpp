@@ -12,6 +12,7 @@ int x_ini,y_ini,bot;
 
 // Apontador para objeto
 OBJ *objeto;
+OBJ *objeto2;
 
 // Função responsável pela especificação dos parâmetros de iluminação
 void DefineIluminacao (void)
@@ -50,14 +51,33 @@ void Desenha(void)
 	glMatrixMode(GL_MODELVIEW);
 
 	// Altera a cor do desenho para rosa
-	glColor3f(1.0f, 0.0f, 1.0f);
+	glColor3f(0.0f, 0.5f, 0.0f);
 
-	// Desenha o objeto 3D lido do arquivo com a cor corrente
 	glPushMatrix();
     glRotatef(rotX,1,0,0);
 	glRotatef(rotY,0,1,0);
 
+    //desenha chão
+    glTranslatef(0.0, -10.0, 0.0);
+    glBegin(GL_POLYGON);
+    glVertex3i(-100,0,-100);
+    glVertex3i(-100,0,100);
+    glVertex3i(100,0,100);
+    glVertex3i(100,0,-100);
+    glEnd();
+    glTranslatef(0.0, 10.0, 0.0);
+
+	// Desenha o objeto 3D lido do arquivo com a cor corrente
+    glColor3f(1.0f, 0.0f, 0.0f);
+
+	glTranslatef(-10.0, 0.0, 0.0);
+    glScalef(5.0,5.0,5.0);
 	DesenhaObjeto(objeto);
+	glTranslatef(10.0, 0.0, 0.0);
+	glScalef(0.09,0.09,0.09);
+	DesenhaObjeto(objeto2);
+
+
     glPopMatrix();
 
 	// Executa os comandos OpenGL
@@ -113,6 +133,7 @@ void Teclas (unsigned char tecla, int x, int y)
 	{
 		// Libera memória e finaliza programa
 		LiberaObjeto(objeto);
+		LiberaObjeto(objeto2);
 		exit(0);
 	}
 	if(tecla=='m')
@@ -220,15 +241,18 @@ void Inicializa (void)
 
 	// Inicializa as variáveis usadas para alterar a posição do
 	// observador virtual
-	obsX = obsY = 0;
-	obsZ = 20;
+	obsX = 0;
+	obsY = 0;
+	obsZ = 150;
 
 	// Lê o nome do arquivo e chama a rotina de leitura
 	//printf("Digite o nome do arquivo que contem o modelo 3D: ");
 	//gets(nomeArquivo);
 
 	// Carrega o objeto 3D
+	objeto2 = CarregaObjeto("teddy.obj",true);
 	objeto = CarregaObjeto("monkey.obj",true);
+
     printf("Objeto carregado!");
 
 	// E calcula o vetor normal em cada face
@@ -239,6 +263,13 @@ void Inicializa (void)
 		objeto->normais_por_vertice = false;
 	}
 	CalculaNormaisPorFace(objeto);
+	if(objeto2->normais)
+	{
+		// Se já existirem normais no arquivo, apaga elas
+		free(objeto2->normais);
+		objeto2->normais_por_vertice = false;
+	}
+	CalculaNormaisPorFace(objeto2);
 }
 
 // Programa Principal

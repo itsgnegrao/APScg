@@ -99,3 +99,21 @@
 	<GL/glut.h>
 	<jpeglib.h>
 
+1494287667 source:/home/itsgnegrao/Documentos/Github/APScg/src/bibutil.cpp
+	<math.h>
+	<string.h>
+	<vector>
+	"bibutil.h"
+
+1497914269 /home/itsgnegrao/Documentos/Github/APScg/src/bibutil.h
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+	<jpeglib.h>
+
+1498448729 source:/home/itsgnegrao/Documentos/Github/APScg/src/05-03-MalhaOBJ.cpp
+	"bibutil.h"
+	<stdio.h>
+	<stdlib.h>
+	<GL/freeglut.h>
+
