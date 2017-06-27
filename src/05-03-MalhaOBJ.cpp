@@ -42,6 +42,57 @@ void DefineIluminacao (void)
 	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );
 }
 
+void DesenhaChao(void){
+//Lado multicolorido - FRENTE
+    glBegin(GL_POLYGON);
+    glVertex3f( -400, -200, -400);       // P1
+    glVertex3f( -400,  200, -400);       // P2
+    glVertex3f(  400,  200, -400);       // P3
+    glVertex3f(  400, -200, -400);
+    glEnd();
+
+  // Lado branco - TRASEIRA
+    glBegin(GL_POLYGON);
+    glVertex3f(  400, -200, 400 );
+    glVertex3f(  400,  200, 400 );
+    glVertex3f( -400,  200, 400 );
+    glVertex3f( -400, -200, 400 );
+    glEnd();
+
+  // Lado roxo - DIREITA
+    glBegin(GL_POLYGON);
+    glVertex3f( 400, -200, -400 );
+    glVertex3f( 400,  200, -400 );
+    glVertex3f( 400,  200,  400 );
+    glVertex3f( 400, -200,  400 );
+    glEnd();
+
+  // Lado verde - ESQUERDA
+    glBegin(GL_POLYGON);
+    glVertex3f( -400, -200, 400 );
+    glVertex3f( -400,  200, 400 );
+    glVertex3f( -400,  200, -400);
+    glVertex3f( -400, -200, -400 );
+    glEnd();
+
+  // Lado vermelho - BASE
+    glBegin(GL_POLYGON);
+    glVertex3f(  400, -200, -400 );
+    glVertex3f(  400, -200,  400 );
+    glVertex3f( -400, -200, 400 );
+    glVertex3f( -400, -200, -400 );
+    glEnd();
+
+      // Lado azul - TOPO
+    glColor3f(0.0f, 0.5f, 0.0f);
+    glBegin(GL_POLYGON);
+    glVertex3f(  400,  200,  400 );
+    glVertex3f(  400,  200, -400 );
+    glVertex3f( -400,  200, -400 );
+    glVertex3f( -400,  200,  400 );
+    glEnd();
+}
+
 // Função callback de redesenho da janela de visualização
 void Desenha(void)
 {
@@ -58,14 +109,10 @@ void Desenha(void)
 	glRotatef(rotY,0,1,0);
 
     //desenha chão
-    glTranslatef(0.0, -10.0, 0.0);
-    glBegin(GL_POLYGON);
-    glVertex3i(-100,0,-100);
-    glVertex3i(-100,0,100);
-    glVertex3i(100,0,100);
-    glVertex3i(100,0,-100);
-    glEnd();
-    glTranslatef(0.0, 10.0, 0.0);
+    glTranslatef(0.0, -210.0, 0.0);
+    glColor3f(0.5,0.25,0.20);
+    DesenhaChao();
+    glTranslatef(0.0, 210.0, 0.0);
 
 	// Desenha o objeto 3D lido do arquivo com a cor corrente
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -221,7 +268,7 @@ void Inicializa (void)
 	char nomeArquivo[30];
 
 	// Define a cor de fundo da janela de visualização como branca
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0, 1.0f, 1.0f, 1.0f);
 
 	// Habilita a definição da cor do material a partir da cor corrente
 	glEnable(GL_COLOR_MATERIAL);
