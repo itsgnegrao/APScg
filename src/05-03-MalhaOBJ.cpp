@@ -11,7 +11,7 @@ GLfloat obsX, obsY, obsZ, obsX_ini, obsY_ini, obsZ_ini;
 int x_ini,y_ini,bot;
 
 // Apontador para objeto
-OBJ *objeto;
+OBJ *pedra;
 OBJ *objeto2;
 
 // Função responsável pela especificação dos parâmetros de iluminação
@@ -119,8 +119,10 @@ void Desenha(void)
 
 	glTranslatef(-10.0, 0.0, 0.0);
     glScalef(5.0,5.0,5.0);
-	DesenhaObjeto(objeto);
-	glTranslatef(10.0, 0.0, 0.0);
+	DesenhaObjeto(pedra);
+	glTranslatef(-10.0, 0.0, 0.0);
+	DesenhaObjeto(pedra);
+	glTranslatef(20.0, 0.0, 0.0);
 	glScalef(0.09,0.09,0.09);
 	DesenhaObjeto(objeto2);
 
@@ -179,7 +181,7 @@ void Teclas (unsigned char tecla, int x, int y)
 	if(tecla==27) // ESC ?
 	{
 		// Libera memória e finaliza programa
-		LiberaObjeto(objeto);
+		LiberaObjeto(pedra);
 		LiberaObjeto(objeto2);
 		exit(0);
 	}
@@ -298,18 +300,18 @@ void Inicializa (void)
 
 	// Carrega o objeto 3D
 	objeto2 = CarregaObjeto("teddy.obj",true);
-	objeto = CarregaObjeto("monkey.obj",true);
+	pedra = CarregaObjeto("monkey.obj",true);
 
     printf("Objeto carregado!");
 
 	// E calcula o vetor normal em cada face
-	if(objeto->normais)
+	if(pedra->normais)
 	{
 		// Se já existirem normais no arquivo, apaga elas
-		free(objeto->normais);
-		objeto->normais_por_vertice = false;
+		free(pedra->normais);
+		pedra->normais_por_vertice = false;
 	}
-	CalculaNormaisPorFace(objeto);
+	CalculaNormaisPorFace(pedra);
 	if(objeto2->normais)
 	{
 		// Se já existirem normais no arquivo, apaga elas
