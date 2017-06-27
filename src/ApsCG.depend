@@ -117,3 +117,21 @@
 	<stdlib.h>
 	<GL/freeglut.h>
 
+1498522063 source:/home/todos/alunos/cm/a1601113/Documentos/APScg/src/bibutil.cpp
+	<math.h>
+	<string.h>
+	<vector>
+	"bibutil.h"
+
+1498522063 /home/todos/alunos/cm/a1601113/Documentos/APScg/src/bibutil.h
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+	<jpeglib.h>
+
+1498522452 source:/home/todos/alunos/cm/a1601113/Documentos/APScg/src/05-03-MalhaOBJ.cpp
+	"bibutil.h"
+	<stdio.h>
+	<stdlib.h>
+	<GL/freeglut.h>
+

@@ -299,7 +299,7 @@ void Inicializa (void)
 	//gets(nomeArquivo);
 
 	// Carrega o objeto 3D
-	objeto2 = CarregaObjeto("teddy.obj",true);
+	objeto2 = CarregaObjeto("obj/MountnN14_obj.obj",true);
 	pedra = CarregaObjeto("monkey.obj",true);
 
     printf("Objeto carregado!");
