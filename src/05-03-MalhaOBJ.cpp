@@ -11,8 +11,8 @@ GLfloat obsX, obsY, obsZ, obsX_ini, obsY_ini, obsZ_ini;
 int x_ini,y_ini,bot;
 
 // Apontador para objeto
-OBJ *nuvens;
-OBJ *objeto2;
+OBJ *monkeys;
+OBJ *dragon;
 
 // Função responsável pela especificação dos parâmetros de iluminação
 void DefineIluminacao (void)
@@ -93,13 +93,21 @@ void DesenhaChao(void){
     glEnd();
 }
 
-    float posicaoZ_dragao=150.0;
+    float posicaoZ_dragao=160.0;
     float posicaoX_dragao=0.0;
-    float inc = -0.5;
+    float posicaoZ_cena=0.0;
+    float inc = -0.2;
+    float incena = -1.0;
 
 void Timer(void){
-    if(posicaoZ_dragao <= -150.0 ) posicaoZ_dragao = 150.0;
+    if(posicaoZ_dragao <= -180.0 ){
+        posicaoZ_dragao = 160.0;
+        posicaoZ_cena = 0.0;
+    }
     posicaoZ_dragao = posicaoZ_dragao + inc;
+    posicaoZ_cena+=incena;
+
+        // E modifica distância do observadorob
     glutPostRedisplay();
 
 }
@@ -119,29 +127,111 @@ void Desenha(void)
     glRotatef(rotY,0,1,0);
 
     //desenha chão
-    glTranslatef(0.0, -210.0, 0.0);
+    glTranslatef(0.0, -210.0, 400.0-posicaoZ_cena);
     glColor3f(0.5,0.25,0.20);
     DesenhaChao();
-    glTranslatef(0.0, 210.0, 0.0);
+    glTranslatef(0.0, 210.0, -400.0);
 
     // Desenha o objeto 3D lido do arquivo com a cor corrente
     glColor3f(1.0f, 0.0f, 0.0f);
 
-    glTranslatef(-10.0, 0.0, 0.0);
+    glTranslatef(-10.0, 0.0, 400);
     glScalef(5.0,5.0,5.0);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, 0);
 
-    DesenhaObjeto(nuvens);
+    glTranslatef(-10.0, 0.0, -80);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, 80);
 
-    glTranslatef(-10.0, 0.0, 0.0);
+    glTranslatef(-20.0, 0.0, -100);
+    DesenhaObjeto(monkeys);
+    glTranslatef(20.0, 0.0, 100);
 
-    DesenhaObjeto(nuvens);
+    glTranslatef(0, 0.0, -140);
+    DesenhaObjeto(monkeys);
+    glTranslatef(0.0, 0.0, 140);
 
-    glTranslatef(15+posicaoX_dragao, 2.0, posicaoZ_dragao);
+    glTranslatef(-10.0, 0.0, -120);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, 120);
 
-    glScalef(0.4,0.4,0.4);
+    glTranslatef(10.0, 0.0, -80);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-10.0, 0.0, 80);
+
+    glTranslatef(-10.0, 0.0, -40);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, 40);
+
+    glTranslatef(20.0, 0.0, -60);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-20.0, 0.0, 60);
+
+    glTranslatef(0.0, 0.0, -60);
+    DesenhaObjeto(monkeys);
+    glTranslatef(0.0, 0.0, 60);
+
+    glTranslatef(-20.0, 0.0, 20);
+    DesenhaObjeto(monkeys);
+    glTranslatef(20.0, 0.0, -20);
+
+    glTranslatef(20.0, 0.0, -20);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-20.0, 0.0, 20);
+
+    glTranslatef(-25.0, 0.0, -20);
+    DesenhaObjeto(monkeys);
+    glTranslatef(25.0, 0.0, 20);
+
+    glTranslatef(15.0, 0.0, 20);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-15.0, 0.0, -20);
+
+    glTranslatef(-35.0, 0.0, 40);
+    DesenhaObjeto(monkeys);
+    glTranslatef(35.0, 0.0, -40);
+
+    glTranslatef(0.0, 0.0, 40);
+    DesenhaObjeto(monkeys);
+    glTranslatef(0.0, 0.0, -40);
+
+    glTranslatef(20.0, 0.0, 60);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-20.0, 0.0, -60);
+
+    glTranslatef(0.0, 0.0, 80);
+    DesenhaObjeto(monkeys);
+    glTranslatef(0.0, 0.0, -80);
+
+    glTranslatef(-15.0, 0.0, 60);
+    DesenhaObjeto(monkeys);
+    glTranslatef(15.0, 0.0, -60);
+
+    glTranslatef(-10.0, 0.0, 100);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, -100);
+
+    glTranslatef(10.0, 0.0, 120);
+    DesenhaObjeto(monkeys);
+    glTranslatef(-10.0, 0.0, -120);
+
+    glTranslatef(-10.0, 0.0, 140);
+    DesenhaObjeto(monkeys);
+    glTranslatef(10.0, 0.0, -140);
+
+    glTranslatef(-20.0, 0.0, 120);
+    DesenhaObjeto(monkeys);
+    glTranslatef(20.0, 0.0, -120);
+
+
+
+
+    glTranslatef(-5+posicaoX_dragao, 0.0, posicaoZ_dragao-inc);
+    glScalef(0.3,0.3,0.3);
     glRotatef(180,0,1,0);
 
-    DesenhaObjeto(objeto2);
+    DesenhaObjeto(dragon);
     Timer();
     //glutTimerFunc(40,Timer, 1);
 
@@ -170,7 +260,7 @@ void EspecificaParametrosVisualizacao(void)
     glLoadIdentity();
 
     // Especifica a projeção perspectiva(angulo,aspecto,dnear,dfar)
-    gluPerspective(angle,fAspect,0.01,1200);
+    gluPerspective(angle,fAspect,0.01,1400);
 
     // Chama as funções que especificam os parâmetros da câmera e os parâmetros de iluminação
     PosicionaObservador();
@@ -199,8 +289,8 @@ void Teclas (unsigned char tecla, int x, int y)
     if(tecla==27) // ESC ?
     {
         // Libera memória e finaliza programa
-        LiberaObjeto(nuvens);
-        LiberaObjeto(objeto2);
+        LiberaObjeto(monkeys);
+        LiberaObjeto(dragon);
         exit(0);
     }
     if(tecla=='m')
@@ -222,11 +312,17 @@ void TeclasEspeciais (int tecla, int x, int y)
                             break;
         case GLUT_KEY_END:    if(angle<=150) angle +=5;
                             break;
-        case GLUT_KEY_UP:   if(inc>=-2.0) inc-=0.1;
+        case GLUT_KEY_UP:   if(inc>=-2.0){
+                                inc-=0.1;
+                                incena-=0.5;
+                                }
                             break;
-        case GLUT_KEY_DOWN:  if(inc<-0.2) inc+=0.1;
+        case GLUT_KEY_DOWN:  if(inc<-0.2){
+                                inc+=0.1;
+                                incena+=0.5;
+                                }
                             break;
-        case GLUT_KEY_RIGHT:   if(posicaoX_dragao<=30) posicaoX_dragao+=10;
+        case GLUT_KEY_RIGHT:   if(posicaoX_dragao<=25) posicaoX_dragao+=5;
                             break;
         case GLUT_KEY_LEFT:  if(posicaoX_dragao>=-30) posicaoX_dragao-=5;
                             break;
@@ -317,34 +413,37 @@ void Inicializa (void)
     // Inicializa as variáveis usadas para alterar a posição do
     // observador virtual
     obsX = 0;
-    obsY = 0;
-    obsZ = 1000;
+    obsY = 40;
+    //obsZ = 900;
+
+    //obsY = 0;
+    obsZ = 1350;
 
     // Lê o nome do arquivo e chama a rotina de leitura
     //printf("Digite o nome do arquivo que contem o modelo 3D: ");
     //gets(nomeArquivo);
 
     // Carrega o objeto 3D
-    objeto2 = CarregaObjeto("obj/KinjaDragern/KinjaDragern.obj",true);
-    nuvens = CarregaObjeto("monkey.obj",true);
+    dragon = CarregaObjeto("obj/KinjaDragern/KinjaDragern.obj",true);
+    monkeys = CarregaObjeto("obj/monkey.obj",true);
 
     printf("Objeto carregado!");
 
     // E calcula o vetor normal em cada face
-    if(nuvens->normais)
+    if(monkeys->normais)
     {
         // Se já existirem normais no arquivo, apaga elas
-        free(nuvens->normais);
-        nuvens->normais_por_vertice = false;
+        free(monkeys->normais);
+        monkeys->normais_por_vertice = false;
     }
-    CalculaNormaisPorFace(nuvens);
-    if(objeto2->normais)
+    CalculaNormaisPorFace(monkeys);
+    if(dragon->normais)
     {
         // Se já existirem normais no arquivo, apaga elas
-        free(objeto2->normais);
-        objeto2->normais_por_vertice = false;
+        free(dragon->normais);
+        dragon->normais_por_vertice = false;
     }
-    CalculaNormaisPorFace(objeto2);
+    CalculaNormaisPorFace(dragon);
 }
 
 // Programa Principal
@@ -361,7 +460,7 @@ int main(int argc, char *argv[])
     glutInitWindowSize(450,450);
 
     // Cria a janela passando como argumento o título da mesma
-    glutCreateWindow("Desenho de um objeto 3D com cálculo do vetor normal");
+    glutCreateWindow("Dr@g0ns @nd M0nk&ys");
 
     // Registra a função callback de redesenho da janela de visualização
     glutDisplayFunc(Desenha);
@@ -380,8 +479,6 @@ int main(int argc, char *argv[])
 
     // Registra a função callback para eventos de movimento do mouse
     glutMotionFunc(GerenciaMovim);
-
-    //Função tempo
 
 
     // Chama a função responsável por fazer as inicializações
